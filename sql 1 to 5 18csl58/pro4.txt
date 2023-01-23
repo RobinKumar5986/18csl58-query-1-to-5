@@ -1,0 +1,24 @@
+4.1 select sname from student s,semsec sc,class c
+where c.ssid=sc.ssid and c.usn=s.usn
+and sc.sem=4 and sc.sec="c";
+
+4.2 select ss.sem,ss.sec,count(s.gender) as count from student s, semsec ss,class c
+where s.usn=c.usn and ss.ssid=c.ssid
+group by ss.sem,ss.sec order by ss.sem ;
+
+4.3 create view test1 as
+select test1 from iamarks where usn="4AD13CS091";
+select * from test1;
+
+4.4 UPDATE IAMARKS 
+SET FINALIA=GREATEST(TEST1+TEST2,TEST2+TEST3,TEST1+TEST3)/2; 
+SELECT * FROM IAMARKS; 
+
+4.5 SELECT S.USN,S.SNAME,S.ADDRESS,S.PHONE,S.GENDER, 
+(CASE 
+WHEN IA.FINALIA BETWEEN 17 AND 20 THEN 'OUTSTANDING' 
+WHEN IA. FINALIA BETWEEN 12 AND 16 THEN 'AVERAGE' 
+ELSE 'WEAK' 
+ END) AS CAT 
+FROM STUDENT S, SEMSEC SS, IAMARKS IA, SUBJECT SUB WHERE S.USN = IA.USN 
+AND SS.SSID = IA.SSID ; 

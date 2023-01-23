@@ -1,0 +1,18 @@
+1.1select *
+from book b, book_authors ba,publisher p,book_lending bl
+where b.book_id=ba.book_id and b.publisher_name=p.name and b.book_id=bl.book_id;
+
+1.2 select bl.* from book b,book_lending bl
+where bl.date_out>"2017-01-17" and bl.date_out<"2017-06-17"
+having count(*)>=3;
+
+1.3 delete from book where book_id=7;
+select * from book;
+
+1.4 create view year_view as
+select pub_year from book;
+select * from year_view order by pub_year desc;
+
+1.5 create view book_copy as
+select book_id,no_of_copies from book_copies;
+select * from book_copy;

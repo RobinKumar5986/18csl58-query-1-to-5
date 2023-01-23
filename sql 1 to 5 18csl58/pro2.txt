@@ -1,0 +1,20 @@
+2.1 select c_name from customer c
+where c.grade>(select avg(grade) from customer);
+
+2.2 select s.name from s_man s
+where (select count(*) from customer c
+where s.s_id=c.s_id)>1;
+
+2.3 select s.s_id,s.name from s_man s
+union
+select  c.s_id,c.c_name from customer c ,s_man s
+where  s.s_id!=c.s_id;
+
+2.4 create view cust_view as
+select s.name,s.s_id,o.o_date from s_man s,orderring o
+where s.s_id=o.s_id 
+and o.p_amt=(select max(p_amt) from orderring oo where oo.o_date=o.o_date);
+select * from cust_view;
+
+2.5 delete from s_man where s_id=132;
+select * from s_man;
